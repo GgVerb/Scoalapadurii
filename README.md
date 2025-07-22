@@ -1,2 +1,2 @@
 # Scoalapadurii
-Un proiect Romsilva
+Un proiect Romsilva ANANP si Parcul National Domogled Valea Cernei.
