@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Școala Pădurii — Program de educație experiențială în natură</title>
+<meta name="description" content="Program pilot de educație experiențială desfășurat în parteneriat între Parcul Național Domogled-Valea Cernei, Romsilva și ANANP. Activități în natură pentru copii și familii."/>
+<meta name="keywords" content="școala pădurii, educație natură, copii, tabere, parcul național domogled, Băile Herculane"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2d7a3a;--green-light:#4caf50;--green-pale:#e8f5e9;--green-mid:rgba(45,122,58,.15);
+  --dark:#1a2e1a;--mid:#2d3d2d;--muted:#5a7a5a;--border:#c8e6c9;
+  --bg:#f1f8e9;--white:#ffffff;--amber:#f59e0b;--brown:#795548;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;color:#2d3d2d;background:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 24px}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.05rem;color:var(--dark)}
+.nav-logo-icon{width:34px;height:34px;background:var(--green);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:.875rem;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+@media(max-width:640px){.nav-links{display:none}}
+
+section{padding:72px 24px}
+.container{max-width:1100px;margin:0 auto}
+.section-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.section-title{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:800;color:var(--dark);margin-bottom:12px;line-height:1.2}
+.section-sub{font-size:1rem;color:var(--muted);max-width:600px;line-height:1.7}
+
+/* HERO */
+#hero{background:linear-gradient(160deg,#0d2b0d 0%,#1a4a1a 40%,#2d6b1e 100%);color:white;padding:88px 24px 80px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:.75rem;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:20px}
+.hero-badge::before{content:'';width:8px;height:8px;border-radius:50%;background:#4caf50;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-title{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;line-height:1.1;margin-bottom:16px}
+.hero-title span{color:#4caf50}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.7);margin-bottom:24px;line-height:1.7;max-width:480px}
+.hero-partners{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
+.partner-chip{font-size:.75rem;font-weight:500;padding:5px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:6px;color:rgba(255,255,255,.8)}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#4caf50;color:white;font-weight:700;font-size:.9rem;padding:13px 26px;border-radius:8px;transition:background .2s}
+.hero-cta:hover{background:#388e3c}
+.hero-visual{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:16px}
+.hero-stat{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border-radius:10px;padding:14px 16px}
+.hero-stat-icon{font-size:1.6rem;flex-shrink:0}
+.hero-stat-num{font-size:1.4rem;font-weight:900;color:#4caf50;line-height:1}
+.hero-stat-label{font-size:.78rem;color:rgba(255,255,255,.6);margin-top:3px}
+
+/* QUOTE BANNER */
+#quote{background:var(--green);padding:40px 24px;text-align:center}
+.quote-text{max-width:800px;margin:0 auto;font-size:1.1rem;font-style:italic;color:rgba(255,255,255,.9);line-height:1.75}
+.quote-text::before{content:'"';font-size:3rem;color:rgba(255,255,255,.3);line-height:0;vertical-align:-1rem;margin-right:4px}
+
+/* ABOUT */
+#about{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr}}
+.about-text p{color:var(--muted);line-height:1.75;margin-bottom:16px}
+.about-cards{display:grid;gap:16px}
+.about-card{background:white;border:1px solid var(--border);border-radius:14px;padding:22px;border-left:4px solid var(--green)}
+.about-card-icon{font-size:1.5rem;margin-bottom:10px}
+.about-card h4{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.about-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+
+/* PROGRAMS */
+#programs{background:white}
+.programs-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+@media(max-width:640px){.programs-grid{grid-template-columns:1fr}}
+.program-card{border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:box-shadow .2s}
+.program-card:hover{box-shadow:0 8px 24px rgba(45,122,58,.12)}
+.program-header{padding:20px 22px 16px;background:var(--green-pale)}
+.program-age{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);background:white;border:1px solid var(--border);padding:3px 10px;border-radius:999px;margin-bottom:10px}
+.program-title{font-size:1.1rem;font-weight:800;color:var(--dark)}
+.program-body{padding:18px 22px 22px}
+.program-list{list-style:none}
+.program-list li{font-size:.85rem;color:var(--muted);padding:5px 0;display:flex;align-items:flex-start;gap:8px;border-bottom:1px solid #f0f0f0}
+.program-list li:last-child{border-bottom:none}
+.program-list li::before{content:'🌿';flex-shrink:0;font-size:.8rem;margin-top:2px}
+
+/* ACTIVITIES */
+#activities{background:var(--bg)}
+.activities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.activities-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.activities-grid{grid-template-columns:1fr}}
+.activity-card{background:white;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:center}
+.activity-icon{font-size:2rem;margin-bottom:12px}
+.activity-name{font-size:.9rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.activity-desc{font-size:.8rem;color:var(--muted);line-height:1.55}
+
+/* PARTNERS */
+#partners{background:white}
+.partners-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:36px}
+@media(max-width:640px){.partners-grid{grid-template-columns:1fr}}
+.partner-card{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:28px;text-align:center}
+.partner-logo{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin:0 auto 16px;background:var(--green);color:white}
+.partner-name{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.3}
+.partner-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* TESTIMONIALS */
+#testimonials{background:var(--dark);color:white;padding:72px 24px}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:768px){.testimonials-grid{grid-template-columns:1fr}}
+.testimonial{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:24px}
+.testimonial-text{font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.7;font-style:italic;margin-bottom:16px}
+.testimonial-text::before{content:'"';color:#4caf50;font-size:1.5rem;line-height:0;vertical-align:-.5rem;margin-right:3px}
+.testimonial-author{font-size:.75rem;font-weight:600;color:#4caf50;text-transform:uppercase;letter-spacing:.06em}
+
+/* CONTACT */
+#contact{background:var(--bg)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+.contact-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.contact-icon{width:42px;height:42px;border-radius:10px;background:var(--green-pale);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-label{font-size:.7rem;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.contact-value{font-size:.9rem;color:var(--mid)}
+.reg-box{background:white;border:1px solid var(--border);border-radius:16px;padding:28px}
+.reg-box h3{font-size:1.1rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.reg-box p{font-size:.85rem;color:var(--muted);margin-bottom:20px;line-height:1.6}
+.reg-btn{display:block;text-align:center;background:var(--green);color:white;font-weight:700;font-size:.9rem;padding:13px;border-radius:8px;transition:background .2s}
+.reg-btn:hover{background:#1b5e20}
+
+/* FOOTER */
+footer{background:#0d2b0d;color:rgba(255,255,255,.5);text-align:center;padding:28px 24px;font-size:.82rem}
+footer strong{color:#4caf50}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">🌲</div>
+      Școala Pădurii
+    </div>
+    <div class="nav-links">
+      <a href="#about">Despre</a>
+      <a href="#programs">Programe</a>
+      <a href="#activities">Activități</a>
+      <a href="#partners">Parteneri</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Program pilot · Băile Herculane</div>
+      <h1 class="hero-title">Bun venit la<br><span>Școala Pădurii</span></h1>
+      <p class="hero-sub">Un program pilot de educație experiențială desfășurat în parteneriat între Parcul Național Domogled-Valea Cernei, Romsilva și ANANP. Copiii învață din natură — direct, autentic, de neuitat.</p>
+      <div class="hero-partners">
+        <span class="partner-chip">🏔️ Parcul Național Domogled-V.C.</span>
+        <span class="partner-chip">🌲 Romsilva</span>
+        <span class="partner-chip">🛡️ ANANP</span>
+      </div>
+      <a href="#contact" class="hero-cta">Înscrie-te acum →</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stat">
+        <div class="hero-stat-icon">🌿</div>
+        <div>
+          <div class="hero-stat-num">3</div>
+          <div class="hero-stat-label">Grupe de vârstă adaptate</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-icon">🏕️</div>
+        <div>
+          <div class="hero-stat-num">6+</div>
+          <div class="hero-stat-label">Tipuri de activități în natură</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-icon">🤝</div>
+        <div>
+          <div class="hero-stat-num">3</div>
+          <div class="hero-stat-label">Instituții partenere</div>
+        </div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-icon">📍</div>
+        <div>
+          <div class="hero-stat-num">Domogled</div>
+          <div class="hero-stat-label">Parc Național, Carpații Meridionali</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote">
+  <p class="quote-text">Copiii învață din orice și din toate. Ei învață oriunde se află, nu doar în locuri speciale de învățare.</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Despre program</div>
+    <h2 class="section-title">Educație autentică în natură</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Școala Pădurii este un program pilot de educație experiențială desfășurat în cadrul Parcului Național Domogled-Valea Cernei. Prin experiență directă în natură, copiii dezvoltă o legătură profundă cu mediul înconjurător.</p>
+        <p>Oferim copiilor posibilitatea de a învăța prin experiență directă în natură, dezvoltându-le curiozitatea, responsabilitatea și dragostea pentru mediul înconjurător prin activități progresive adaptate vârstei lor.</p>
+        <p>Programul poate fi însușit de orice școală sau instituție și este deschis atât copiilor, cât și familiilor care doresc să descopere împreună frumusețea educației în aer liber.</p>
+        <p style="font-style:italic;color:var(--green);font-weight:600;border-left:3px solid var(--green);padding-left:14px;margin-top:20px">"Întrebarea nu este cât de mult știe tânărul când și-a terminat educația, ci cât de mult îi pasă?"</p>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="about-card-icon">🌱</div>
+          <h4>Experiență directă</h4>
+          <p>Nu există o modalitate corectă de a deveni educat. Natura oferă experiențe unice, adaptate fiecărui copil în parte.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">🧭</div>
+          <h4>Activități adaptate vârstei</h4>
+          <p>Fiecare grup de vârstă are un program specific, de la plimbări tematice pentru cei mici până la expediții Junior Ranger pentru adolescenți.</p>
+        </div>
+        <div class="about-card">
+          <div class="about-card-icon">👨‍👩‍👧</div>
+          <h4>Implicarea familiei</h4>
+          <p>Experiențe speciale pentru familii — părinți și copii descoperă împreună natura, întărind legătura dintre ei prin activități comune.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs">
+  <div class="container">
+    <div class="section-label">Grupe de vârstă</div>
+    <h2 class="section-title">Programe pe Grupe de Vârstă</h2>
+    <p class="section-sub" style="margin-bottom:36px">Activitățile noastre sunt special adaptate pentru a corespunde nevoilor de dezvoltare ale fiecărei grupe de vârstă, asigurând experiențe sigure și educative.</p>
+    <div class="programs-grid">
+
+      <div class="program-card">
+        <div class="program-header">
+          <div class="program-age">Sub 10 ani</div>
+          <div class="program-title">🐿️ Exploratori Mici</div>
+        </div>
+        <div class="program-body">
+          <ul class="program-list">
+            <li>Plimbări pe Poteci Tematice</li>
+            <li>Descoperirea naturii prin jocuri interactive și povești captivante</li>
+            <li>Activități adaptate vârstei pentru dezvoltarea abilităților motorii</li>
+            <li>Primele experiențe de camping în siguranță și confort</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-header">
+          <div class="program-age">Peste 10 ani</div>
+          <div class="program-title">🏔️ Aventurieri</div>
+        </div>
+        <div class="program-body">
+          <ul class="program-list">
+            <li>Inițiere în tehnicile de cățărare și orientare montană</li>
+            <li>Parcursuri de aventură pentru dezvoltarea curajului și încrederii</li>
+            <li>Tehnici de supraviețuire în natură</li>
+            <li>Explorarea biodiversității Parcului Național Domogled</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-header">
+          <div class="program-age">Program avansat</div>
+          <div class="program-title">🦅 Expediții &amp; Junior Ranger</div>
+        </div>
+        <div class="program-body">
+          <ul class="program-list">
+            <li>Experiențe complexe de supraviețuire și leadership în natură</li>
+            <li>Program intensiv de formare în conservarea naturii</li>
+            <li>Expediții de mai multe zile în zone sălbatice ale parcului</li>
+            <li>Abilități de protecție a mediului și biodiversității</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="program-card">
+        <div class="program-header">
+          <div class="program-age">Toate vârstele</div>
+          <div class="program-title">👨‍👩‍👧 Familie în Natură</div>
+        </div>
+        <div class="program-body">
+          <ul class="program-list">
+            <li>Experiențe speciale pentru întărirea legăturii dintre părinți și copii</li>
+            <li>Plimbări și jocuri în natură adaptate pentru toată familia</li>
+            <li>Camping organizat pentru timp de calitate în aer liber</li>
+            <li>Descoperirea florei și faunei locale împreună</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="container">
+    <div class="section-label">Ce facem</div>
+    <h2 class="section-title">Activități</h2>
+    <p class="section-sub" style="margin-bottom:36px">O gamă variată de experiențe educative în natură, de la plimbări tematice până la expediții complexe și tabere Junior Ranger.</p>
+    <div class="activities-grid">
+      <div class="activity-card">
+        <div class="activity-icon">🥾</div>
+        <div class="activity-name">Trasee Tematice</div>
+        <div class="activity-desc">Trasee special amenajate cu puncte de interes educativ pentru descoperirea florei și faunei locale.</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🧗</div>
+        <div class="activity-name">Cățărare</div>
+        <div class="activity-desc">Inițiere în tehnicile de cățărare pe stâncă cu echipament profesional și instructori calificați.</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🌳</div>
+        <div class="activity-name">Parcurs Aventură</div>
+        <div class="activity-desc">Parcursuri cu obstacole aeriene pentru dezvoltarea curajului și coordonării.</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🗺️</div>
+        <div class="activity-name">Expediții</div>
+        <div class="activity-desc">Expediții de o zi sau mai multe pentru explorarea zonelor sălbatice ale parcului național.</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🏕️</div>
+        <div class="activity-name">Camping</div>
+        <div class="activity-desc">Experiențe de camping organizate pentru învățarea abilităților de supraviețuire în natură.</div>
+      </div>
+      <div class="activity-card">
+        <div class="activity-icon">🦁</div>
+        <div class="activity-name">Junior Ranger</div>
+        <div class="activity-desc">Program intensiv de formare în conservarea naturii și protecția mediului cu abilități de supraviețuire.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners">
+  <div class="container">
+    <div class="section-label">Un Parteneriat pentru Viitor</div>
+    <h2 class="section-title">Partenerii Noștri</h2>
+    <p class="section-sub">Școala Pădurii este rezultatul colaborării dintre trei instituții cu experiență vastă în protecția și educația despre natură.</p>
+    <div class="partners-grid">
+      <div class="partner-card">
+        <div class="partner-logo">🏔️</div>
+        <div class="partner-name">Parcul Național Domogled-Valea Cernei</div>
+        <p class="partner-desc">Protejează și promovează valorile naturale unice ale Carpaților Meridionali, oferind expertiza în conservarea biodiversității.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">🌲</div>
+        <div class="partner-name">Regia Națională a Pădurilor Romsilva</div>
+        <p class="partner-desc">Administrează silvic pădurea României și dezvoltă programe educative pentru promovarea managementului durabil al resurselor forestiere.</p>
+      </div>
+      <div class="partner-card">
+        <div class="partner-logo">🛡️</div>
+        <div class="partner-name">ANANP</div>
+        <p class="partner-desc">Coordonează și monitorizează sistemul național de arii naturale protejate, promovând conservarea biodiversității și educația ecologică.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:32px;font-size:.9rem;color:var(--muted);font-style:italic">Împreună creăm experiențe educative autentice care conectează copiii cu natura și le dezvoltă respectul pentru mediul înconjurător.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-label" style="color:#4caf50">Ce spun participanții</div>
+    <h2 class="section-title" style="color:white;margin-bottom:32px">Experiențe reale</h2>
+    <p style="color:rgba(255,255,255,.55);margin-bottom:36px;font-size:.9rem">Experimentați transformarea prin educația în natură — părinți și copii își împărtășesc experiențele lor.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-text">Faptul că avem timp este cel mai mare câștig. Copilul meu se trezește calm și odihnit. Are timp de joacă, de încercat lucruri din care s-ar putea să-și aleagă drumul în viață.</p>
+        <div class="testimonial-author">Părinte · Participant Junior Ranger</div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">Prin activitățile de la Școala Pădurii am învățat să am grijă de natură și să înțeleg de ce este important să o protejăm. E cea mai tare școală!</p>
+        <div class="testimonial-author">Participant · Aventurieri</div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">Pentru noi, Școala Pădurii înseamnă echilibru și liniște sufletească. O experiență unică pentru copiii care nu au îndrăznit să viseze la libertate.</p>
+        <div class="testimonial-author">Familie · Program Familii</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label">Contact</div>
+        <h2 class="section-title">Suntem aici pentru voi</h2>
+        <p class="section-sub" style="margin-bottom:32px">Suntem aici să răspundem la toate întrebările tale despre programul Școala Pădurii.</p>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Adresă</div>
+            <div class="contact-value">Strada Parcului nr. 1, Băile Herculane, Caraș-Severin</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-label">Program</div>
+            <div class="contact-value">Luni – Vineri: 08:00 – 17:00<br>Sâmbătă – Duminică: 09:00 – 15:00</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-label">Proiect Romsilva</div>
+            <div class="contact-value">Parcul Național Domogled-Valea Cernei<br>în parteneriat cu Romsilva &amp; ANANP</div>
+          </div>
+        </div>
+      </div>
+      <div class="reg-box">
+        <h3>Înscrie-te în program</h3>
+        <p>Oferă-i copilului tău șansa de a învăța prin experiență directă în natură. Descoperă împreună frumusețea educației în aer liber.</p>
+        <div style="background:var(--green-pale);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:20px">
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.6"><strong style="color:var(--dark)">Programul poate fi însușit</strong> de orice școală sau instituție. Contactați-ne pentru detalii despre implementare și finanțare.</p>
+        </div>
+        <a href="mailto:parcul@domogled-cerna.ro" class="reg-btn">Contactează-ne pentru înscriere</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <strong>Școala Pădurii</strong> · Un program al Parcului Național Domogled-Valea Cernei · Romsilva · ANANP</p>
+  <p style="margin-top:8px">Băile Herculane, Caraș-Severin, România</p>
+</footer>
+
+</body>
+</html>
